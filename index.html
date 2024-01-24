@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>CHAPTER 7</title>
+</head>
+<body>
+    <!-- Page 53 Content -->
+    <div class="page" id="page-53">
+        <Hr size=5 color=black></Hr>
+        <h2 style="text-align: left;"><b>Chapter 7. Operating the NetView Management Console</b></h2>
+        <p style="text-align: justify;">This chapter includes the following information:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v Starting the topology server</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v Starting the topology console</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v Signing on from the topology console window</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v  Using the HOSTCMD command</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v Stopping the topology server and topology console</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v Retrieving inventory data on IP resources</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v Writing server information to the NetView management console databases</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v NetView functions available through NetView management console</p>
+    <Hr size=2 color=black> <b>Starting the Topology Server</b></Hr>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;The following sections describe how to start the topology server either manually or automatically. This task is usually completed by a system administrator for all topology console operators. If you do not need to start the topology server, skip to “Starting the Topology Console” on page 55.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> If you receive messages about the topology server, see the topology console help index for information about the messages.</p>
+        <h4 style="text-align: justify;">&nbsp;&nbsp;<b>Starting the Topology Server from the Desktop Icon</b> </h4>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;For Windows operating systems, double-click the Start NMC Server icon on the desktop.</p>
+        <h4 style="text-align: justify;">&nbsp;&nbsp;<b>Manually Starting the Topology Server</b></h4>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;Perform the following steps to start the server and to activate the TCP/IP or LU 6.2 connection to the IBM Tivoli NetView for z/OS environment:
+</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;1.Open a workstation command window or shell prompt, depending on your operating system.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;2.Change to one of the following directories:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v For Windows: %BINDIR%\TDS\server\bin</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v For AIX or Linux: $BINDIR/TDS/server/bin</p>
+
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> BINDIR is an environment variable used by the Tivoli Framework to define path information used by Tivoli applications. For both Windows systems and AIX or Linux systems, if the Tivoli Framework is not installed on the platform from which the topology server is run, the installation process installs the setup_env.cmd command file or setup_env.sh script file that defines BINDIR.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For Windows, AIX, and Linux for z Systems®, you might want to update the PATH environment variable to make running topology server commands from any directory in a command prompt more convenient.
+
+</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Depending on the path used during installation, the Framework for the topology server typically has one of the following BINDIR values:</p> 
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v usr\local\Tivoli\bin\interp</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v local\Tivoli\bin\interp</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Tivoli\bin\interp</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In these BINDIR values, interp has one of the following values:</p>
+      
+    </div>
+    <div class="page" id="page-54">
+       <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v  For Windows, w32-ix86</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v For AIX, aix4-r1</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v For Linux for z Systems, linux-s390</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;3.	Enter one of the following commands to start the topology server:</p> 
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v For Windows: tserver start</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v For AIX: ./tserver start</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v  For Linux for zSeries: ./tserver start</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Because Linux for z Systems has no display, perform the following steps before issuing this command to start the server:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a.Telnet to the host.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.From the workstation used to perform the Telnet, export the display to the workstation. To do this, use the following command:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;export DISPLAY=ip_addr:0.0</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where ip_addr is the IP address of the workstation.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b></p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a.	You must be the root user to start the topology server.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.	On a AIX or Linux system, if the topology server has been manually stopped and cannot be restarted, see Step 4 on page 67.</p>
+        <h4 style="text-align: justify;">&nbsp;&nbsp;<b>Starting the Topology Server as a Windows Service</b></h4>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;If the topology server is configured to start manually, select the Control Panel →Services control applet:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;1.	Select Topology Communication Server and click Start.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;2.	Select Topology Server and click Start.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;If the topology server is configured to start automatically, it starts when the system is started.</p>
+        <h4 style="text-align: justify;">&nbsp;&nbsp;<b>Starting the Topology Server as a Daemon</b></h4>
+          <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;For AIX or Linux systems, issue the following command to start the topology server processes at system startup and have them run as daemons:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;$BINDIR/TDS/server/bin/config -d</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> You must be the root user to issue this command.</p>
+        <h4 style="text-align: justify;">&nbsp;&nbsp;<b>Establishing Communication Between the NetView Host and the Topology Server</b></h4>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;If communication between the NetView management console topology server and the NetView program is not active, you can issue the NETCONV command to start the communication. Usually this communication is defined to start automatically during NetView initialization. To start communication using TCP/IP, that was defined to start automatically but is not currently active, enter:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;NETCONV STARTCON=ip_sysdef</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;To start communication using SNA, that was defined to start automatically but is not currently active, enter</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;NETCONV STARTCON=lu_sysdef</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;These NETCONV commands cause the connection to be established under the autotask that is defined by the function.autotask.NetConv statement in the CNMSTYLE member.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;If you did not define communication to start automatically, you can use the NETCONV command with the ACTION=START keyword or with the STARTCON=ip_sysdef / lu_sysdef keyword to start communication under the task issuing the NETCONV command.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> If the task under which communication is established ends for any reason, the connection is broken. This is true for both the autotask that is specified in the CNMSTYLE member or the task under which the NETCONV command (with ACTION=START or STARTCON=ip_sysdef / lu_sysdef ) was issued.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;For more information about the NETCONV command, see the online help.</p>
+        
+        <Hr size=2 color=black> <b>Starting the Topology Server</b></Hr>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;You can start the topology console by selecting a desktop icon in Windows operating systems, or you can start it by issuing the command in line mode from any operating system, or from the Tivoli Desktop.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> You can also launch the NetView management console from other applications. For information, see Appendix D, “Launching and Using the NetView Management Console from Other Applications,” on page 143.</p>
+        
+        <h4 style="text-align: justify;">&nbsp;&nbsp;<b>Selecting the Desktop Icon in Windows</b></h4>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;For Windows operating systems, an icon is created on the desktop. To start the topology console using a Windows operating system, double-click the icon.</p>
+        <h4 style="text-align: justify;">&nbsp;&nbsp;<b>Using a Line Command</b></h4>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;Change to the appropriate directory for your environment:</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v For Windows systems: \usr\local\Tivoli\bin\generic_unix\TDS\client\bin</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v For AIX or Linux systems: /usr/local/Tivoli/bin/generic_unix/TDS/client/bin</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;From the directory, issue the appropriate operating system specific command to start the topology console:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v  For Windows systems: tconsoleNT .. -key nmc</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v  For AIX or Linux systems: tconsole.sh .. -key nmc</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;See Appendix B, “Topology Console Commands,” on page 123 for complete information about all of the tconsole command-line arguments and supported environment variables.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;Note: To avoid problems when starting the topology console on AIX or Linux systems, add the directory that contains the xhost command to the PATH environment variable.</p>
+        <h4 style="text-align: justify;">&nbsp;&nbsp;<b>Using the Topology Console Sign On Window</b></h4>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;Figure 1 on page 56 shows the topology console Sign On window.</p>
+        <p style="text-align:center;"><img src="images/image1.jpg" alt="NetView For z/OS">
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;<i>Figure 1. Sign On Window</i></p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;Follow these steps to sign on to the topology server:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;1.	Type a user name in the User Name entry field of the topology console Sign On window.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b></p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a.The user ID must match your NetView user ID.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.	To restrict access to selected NetView operators to sign on to the topology console, use the DUILOGON command with the NMC keyword. This can be protected by command security (NetView command authorization table or SAF), and permitted to particular operators or groups. An example of this is commented out in the sample command authorization table CNMSCAT2 and the sample SAF command authorization table CNMSAF2. For more information, refer to the IBM Tivoli NetView for z/OS Security Reference.</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;2.	Type a password or password phrase in the Password field.This password or password phrase must match your NetView for z/OS password or password phrase.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;3.	In the Host Machine field, type the IP host name or IP address of the topology server that you want to sign on to . Either specify a new host name or IP address, or select a host name or IP address from the list of topology servers. The list shows the topology servers that you have used.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;If you reassign the topology server console port, specify the port number in this field the first time you sign on using this new port. However, the topology console retains the server:port setting on subsequent sign-ons and uses that</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;setting as the default. See “Establishing Communication Between the NetView Host and the Topology Server” on page 54 for more information.</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;4.	If you previously signed on to NetView management console and saved the settings for the appearance of the topology console windows, you can select Restore console preferences.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;5.	To use administrative functions, such as customizing settings and applying them to all topology consoles of this topology server, select Administrator access. More than one person can sign on with administrative access. In this case, one administrator can overwrite changes made by another administrator. The values saved last apply to all topology consoles.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b>For more information about authorization, see IBM Tivoli NetView for z/OS Administration Reference; specifically, see the information about the NGMFADMN keyword.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;6.	Click OK to sign on to NetView management console. The topology console window, which is shown in Figure 2 on page 59, is displayed.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b>The first time you start the NetView management console, expect a delay as support files are downloaded to the topology console. On subsequent calls of the topology console, only files that have been updated on the topology server are downloaded.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;7.	If a later level of the NetView management console is available, a message is displayed asking if you want to update the code.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v If you choose Yes, the sign-on window takes a short time while the latest level of code is downloaded. Then, the NetView management console is restarted and you can sign on again with the updated code.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v If you choose No, signon is stopped.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;<b>Notes:</b></p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;1.	If you want to run commands, ensure that the NGMFCMDS keyword is set to YES (NGMFCMDS=YES). The default is YES. For more information about the NGMFCMDS keyword, see IBM Tivoli NetView for z/OS Administration Reference.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;2.	For more information about how files are automatically downloaded from the server at sign-on, see Appendix G, “Automatic File Download at Console Log On,” on page 175.</p>
+        
+        <Hr size=2 color=black> <b>Topology Console Window</b></Hr>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;Figure 2 on page 59 shows the topology console window. The following list describes the areas on the topology console window:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v In addition to the menu bar, the toolbar contains selectable icons that provide a quick way to perform the most commonly used functions.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v The progress indicator is on the toolbar. It shows Loading... when the topology console is communicating with the topology server. To cancel a request that is still in progress, click the progress indicator.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v The business tree shows all views. Each node represents a view. You can click the plus (+) or minus (-) sign for a node to expand or collapse the node.Double-click a node to open a view for that node.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> The icons in the business tree display actual status only in certain cases. The Business Systems branch of the business tree displays accurate status. The other branches of the business tree display a satisfactory status, though this is not an accurate representation of the status of the resources they contain. When</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a node that represents a resource is dynamically added to the business tree as a result of more-detail navigation, the status represents that of the resource. It does not represent the aggregate status of all resources in the view.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v The work space contains the view area and the filter bar. See “View Area” on page 59 and “Filter Bar” on page 60 for details. You can detach the work space to view several different views at the same time.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v The log contains messages, issued commands, and command responses.Although command responses can be received asynchronously, they are always displayed following the issued command.</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> The log is not displayed by default. To display the log, click Options > Show Log.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When the visible portion of the log is full, the log begins to automatically scroll. To change this option so that you can manually scroll the log, right-click the log window and clear Automatic Scrolling.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To save the log, click File > Save Log. You can save the log to a file on the server or on the console. If you click Save Log to Console, a window is displayed so that you can specify the name and location of the file. For additional information, see the online help for the menu choices.</p>
+         <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> To clear the console log, use the context menu.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v The view bar displays buttons for all open views in the order that they were opened. You can click any of the buttons in the bar to re-display a previously opened view.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v The status area displays the following information:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;–	The text about the resource or business tree item under the cursor, or the status of any action in progress</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;–	The name of the topology server connection, your host name, the sign-on time and date, the mode you are currently using, NETCONV status, and the topology console IP address</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;–Information about the displayed view</p>
+        <p style="text-align:center;"><img src="images/image1.jpg" alt="Topology Console Window">
+            <p style="text-align: center;"><i>Figure 2. Topology Console Window</i></p>
+            
+         <h2 style="text-align: justify;">&nbsp;&nbsp;&nbsp;<b>View Area</b></h2> 
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The view area of the topology console window contains a notebook that displays different types of views of your resources. Resources can be displayed in topology or details views.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Topology views display resources and their statuses in a graphical format.Topology views are especially useful in displaying the relationships between resources, for example, displaying connectivity. Resources in a topology view are often placed on a background image, such as a building map or geographical map, which shows their general location and proximity to each other.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Details views display resources and their statuses in a list format. Details views contain additional information about resources, such as type and description. You can also use them to control the order in which resources are displayed, such as by time stamp or status. Null nodes and null links are never displayed.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Within a view, context menus contain various commands and functions that are available for a resource. To access a context menu, right-click a resource. A menu is displayed with a list of the available actions for that resource. To access a context menu for the view, right-click in any area of the view that is not over a resource. (If your details view is full, right-click any column heading.) A menu that shows the available actions for the view is displayed.</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can print a topology or details view by clicking File > Print or the Print button on the menu bar. Note that you cannot zoom in on a topology view and print it. To print a larger picture of a view, resize your window and then print the view.</p>
+        <h2 style="text-align: justify;">&nbsp;&nbsp;&nbsp;<b>Filter Bar</b></h2>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The filter bar displays the number of resources in the current view at each status or by flag set. This status is indicated in views by the color of the resource.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> The filter bar is not displayed by default. To display the filter bar, click</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Options > Show View Filter.</b></p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can use the filter bar to prevent resources with particular statuses from being displayed in the current view. To filter resources with a particular status, click the corresponding button to that status on the filter bar.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v In topology views, filtered nodes are displayed as empty boxes and filtered links are displayed as dashed lines.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v In details views, filtered resources are not displayed.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The filter bar continues to display the number of resources in each status. To temporarily re-display a filtered resource in a topology view, including its status, icon, and so on, position your cursor on the resource without clicking.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can customize the statuses that are displayed on the filter bar in the Status page of the Console Properties notebook.</p>
+         
+        <Hr size=2 color=black> <b>NetView Management Console Online Help</b></Hr>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NetView management console provides the following kinds of online help from the topology console:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Menus</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Dialog boxes and notebook pages</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v    Windows</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v    Overview</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Messages for the topology server and topology console</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Commands</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v A Legend function that displays a window containing descriptions of all resource that are types defined to the topology server.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v The ability to display a web site</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Help Index, which you can use to search the help facility. Use a task index to find help on specific tasks. If you receive messages about the topology server, look in the Help Index for information about the messages.</p>
+        
+        <Hr size=2 color=black> <b>NetView Management Console Functions</b></Hr>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This section describes some of the functions of the NetView management console.</p>
+        <h2 style="text-align: justify;">&nbsp;&nbsp;&nbsp;<b>Issuing IP Commands</b></h2>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The following IP commands can be issued from the NetView management console interfaces:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v   Ping</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Tracerte (trace route)</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v    Netstat (Network host status)</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can issue the available IP commands from the NetView management console topology console screen in one of two ways:</p>
+         <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Right-click a resource and select IP Commands from the context menu. This is available for any resource that contains an IP address.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v From the view background, right-click the background and select IP Commands from the pop-up menu.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From the IP Commands menu, the following items are available:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v onetstat</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v  ping</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v tracerte</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When you select ping, onetstat, or tracerte, a dialog box is displayed. If the menu was accessed from a resource and you select ping or tracerte, the IP address for that resource is inserted into the Host Machine field of the dialog box. The ping command can also be started without opening a dialog box when the menu is accessed from a resource.</p>
+        <h2 style="text-align: justify;">&nbsp;&nbsp;&nbsp;<b>The NetView Resource Manager</b></h2>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use the NetView Resource Manager to manage all NetView programs in an enterprise with the NetView management console. The NetView Resource Manager collects task information and forwards this information to a manager NetView for processing. The processed information is stored in RODM.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use the NetView management console interface and the NetView Resource Manager to build views to monitor your enterprise. After RODM is populated, you can use the NetView management console to monitor the NetView program. The views created by the NetView Resource Manager are network views represented in the view tree as NetView Task views. Selecting a NetView Task view results in a view of NetView domains. This view of NetView domains is the first NetView Resource Manager network object that can be selected from the NetView management console and it is an aggregate. Selecting More Details from this view opens a view containing aggregate objects which represent NetView tasks. Each NetView task aggregate can then contain real objects representing the following </p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v    CPU</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v    STG</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v MQIN</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v MQOUT</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v MSGCT</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v   IO</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v    status (active/inactive)</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sample views are provided to monitor and manage NetView tasks.</p>
+        
+        <p style="text-align: justify;">&nbsp;<b>If you want information about...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Refer to...</b></p>
+        <Hr size=2 color=black>Sample views&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	IBM Tivoli NetView for z/OS Resource Object Data Manager and GMFHS Programmer's Guide</Hr>
+        <Hr size=2 color=black>Using the NetViewResourceManager&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IBM Tivoli NetView for z/OS User's Guide:NetView and IBM Tivoli NetView for z/OS Installation: Getting Started</Hr>
+        
+        
+        <h2 style="text-align: justify;">&nbsp;&nbsp;&nbsp;<b>Using RODM Collection Manager With NetView Management Console</b></h2>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RODM Collection Manager enables arbitrary grouping of objects into views or aggregates. Unlike BLDVIEWS which are static, the RODM Collection Manager dynamically manages the views or aggregates. This means that RODM Collection Manager continually updates the views or aggregates, so that you can add, change, or delete collections. To access RODM Collection Manager from the NetView management console, you must be signed on as an administrator.</p>
+        <p style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Figure 3 shows the RODM Collection Manager main menu.</p>
+        <p style="text-align:center;"><img src="images/image3.jpg" alt="RODM Collection Manager main menu">
+        <p style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Figure 3 shows the RODM Collection Manager main menu</i></p> 
+        <Hr size=2 color=black>NetView Management Console Topology Server Databases</Hr>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The topology server databases are used to save server information between restarts of the server. The server information contained in these databases includes the following kinds of data:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Resource data for all resource types</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Operator data for all operators that have logged on</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v View data for all saved views</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v Command data for all customized commands</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When the topology server starts, it loads the data from the first server database directory that contains a database that can be loaded. Table 33 lists the topology server databases, in the order that they are searched for databases that can be loaded.</p>
+        <p style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Table 33. Topology Server Databases</i></p>
+        <p style="text-align:center;"><img src="images/image4.jpg" alt="Topology Server Databases">
+        
+        <p style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Table 33. Topology Server Databases (continued)</i></p>
+        <p style="text-align:center;"><img src="images/image5.jpg" alt="Topology Server Databases">
+            <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default database contains the initial (default) server information. When the server is started for the first time after installation, the default database is loaded. The current and backup databases do not contain server information when the server is loaded for the first time after installation.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The current and backup databases contain the most recent copy of the server information after the server is stopped or checkpointed. Generally, the current and backup databases contain identical server information, but, in some cases, only the current database is updated with server information. For more information, see “Writing Server Information to the Topology Server Databases.”</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The custom_backup database is used to save a customized version of the server information at a known level of customization. This database is not continuously updated by stopping or checkpointing the server. Use this database to protect your server information from undetected database corruption.</p>
+        
+        <h2 style="text-align: justify;">&nbsp;&nbsp;&nbsp;<b>Writing Server Information to the Topology Server Databases</b></h2>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writing server information to the topology server databases is also known as checkpointing. Server information is written to the topology server databases either manually or automatically.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default database is never written during a database checkpoint and serves as a starting database if one or all of the other databases become corrupted. The other databases are written based on the type of checkpoint requested. Server information is written to the topology server databases automatically for the following reasons:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v The autoCheckpointInterval or autoCheckpointDaily properties of the server.properties file are enabled. These properties are explained in the server.properties file. For more information about this file, see “Modifying the Server Properties File” on page 11. All server information is checkpointed to the current database. If the checkpoint completes successfully, the current database is then copied to the backup database.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> The default setting for these properties result in automatic checkpoints at 1 a.m. every day.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v A view is customized and saved to the topology server. Only the files that were changed for the view customization are written, and they are written only to the current database.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v The command profile editor batch utility is run. Only the files that were changed for the command customization are written, and they are written only to the current database.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v The command profile editor batch utility is run. Only the files that were changed for the command customization are written, and they are written only to the current database.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;To manually write information to the topology server database, use either the
+tserver utility -c command or the tserver utility -cc command.
+</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;The tserver utility -c command manually checkpoints all server information to the current database. If the checkpoint completes successfully, the current database is then copied to the backup database.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;The tserver utility -cc command manually checkpoints all server information to the custom_backup database. The custom_backup database is used to save a customized version of the server information at a known level of customization.
+The custom_backup database is meant to override the default database if the current and backup databases become corrupted. For more information about how to use the custom_backup database, see “Creating and Importing Backup Copies of Customized Topology Server Databases” on page 65.
+</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;If your installation has a large number of customized views or commands, it is recommended that you use the tserver utility -cc command whenever you make significant changes to the customized views or commands. When you have used this command, you can restore the server information to a known good copy of the database that contains your recent customization if the current and backup databases become corrupted.</p>
+        <h2 style="text-align: justify;">&nbsp;&nbsp;&nbsp;<b>Handling Corrupted Topology Server Databases</b></h2>
+         <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;One or more of the topology server databases can become corrupted, causing the server to fail to start or to behave abnormally after it starts. Corrupted databases can cause either or both of the server processes (the topology data server and the topology communications server) to end.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;Topology server databases can become corrupted for the following or other reasons:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v The topology server process is incorrectly stopped; for example, stopping a topology server process by closing the topology server window instead of using the tserver stop command. Abruptly stopping the topology server in this manner prevents it from properly updating the databases before it stops.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v The file system used by the topology server runs out of space, preventing the topology server from updating its databases.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v The topology server encounters an internal failure, which results in the topology server stopping abnormally.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;The default and custom_backup databases are not likely to be corrupted. Most database corruptions are the result of a corruption in the in-storage copy of the</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;database. Because the in-storage database is written only to the current and backup databases, the default and custom_backup databases can be used as your recovery databases.</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;If you suspect a database corruption problem, perform the following steps:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;1.	If the server is running, stop the server.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;2.	Make a backup copy of the current and backup databases. You might want to recover these databases if the problem is not a database corruption problem.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;3.	Restart the topology server. The topology server attempts to detect database corruption on initialization. If it detects database corruption, the server attempts to restore the database from the next database that can be loaded. See Table 33 on page 62 for the database recovery order.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;4.	If the server successfully starts, then your database has been recovered. If the server does not start, continue with the next step.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;5.	Erase the current database.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;6.	Restart the topology server. This automatically copies the backup database to the current database. If the server successfully starts, then your database has been recovered. If the server does not start, continue with the next step.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;7.	Erase both the current and backup databases.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;8.	Restart the topology server. At this point, the database has been recovered either from the default database or, if you are using a custom backup, from the custom_backup database.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;If the topology server successfully starts, then the problem was that the original contents of both the backup and current database directories were corrupted. If you previously saved a copy of the databases, you can optionally use the saved copy to restore the topology server databases, as described in “Creating and Importing Backup Copies of Customized Topology Server Databases.”</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;If the topology server does not start, then the problem is not because of corrupted databases. To continue problem determination, see the IBM Tivoli NetView for z/OS Troubleshooting Guide for information about diagnosing NetView management console and Graphic Monitor Facility host subsystem (GMFHS) problems.</p>
+        <h2 style="text-align: lefy;">&nbsp;&nbsp;&nbsp;<b>Creating and Importing Backup Copies of Customized Topology Server Databases</b></h2>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;If you plan to customize many views or commands, you should create a backup copy of the database to insure that your customization is not lost if the server database becomes corrupted.</p>
+        <h4 style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;<b>Customization recommendations</b></h4>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v Perform customization first on a test, or non-production, server.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;v Perform customization first on a test, or non-production, server.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;After you perform the customization, create a backup copy of the server databases that contain the customization using the following steps.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;<b>Note:</b> This procedure requires stopping and restarting the server.</p>
+        
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;1.	To manually write (checkpoint) the topology server databases to the custom_backup directory, enter the following command and wait for it to complete successfully before proceeding to the next step:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;tserver utility -cc</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;2.	Stop the server.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;3.	Delete all the files in the current database directory, but do not delete the directory itself.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;4.	Copy all the files from the custom_backup database directory to the current database directory.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;5.	Start the server. Verify that the server does not issue an error message indicating that the database is corrupted.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;To import the custom_backup database directory to other servers, perform the following steps:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;1.	Stop the server to which the database is to be imported (the import server).</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;2.	Copy the custom_backup directory from the test server to the custom_backup and current directories on the import server.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;3.	Restart the import server.</p>
+        <Hr size=2 color=black><b>Stopping the Topology Console</b></Hr>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;To stop the topology console, select File → Exit from the topology console window. The topology console and all windows are closed.</p>
+        <Hr size=2 color=black><b>Stopping the Topology Server</b></Hr>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;The procedure for stopping the topology server depends on the platform on which the topology server is running. For Windows, you can stop the topology server by selecting an icon or entering a line-mode command. For AIX, you can stop the topology server only with a line-mode command. The following sections describe the steps for stopping the topology server on each type of platform. For Linux for zSeries, you can stop the topology server one of two ways: with a line-mode command or by clicking the X in an X Window System window if the server was started with tserver start.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;<b>Attention: </b>Do not stop the topology server by clicking the X unless the topology server is running on the Linux for zSeries platform and was started with tserver start.</p>
+        <h4 style="text-align: justify;">&nbsp;&nbsp;&nbsp;<b>With the Service Version on Windows</b></h4>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;To stop the topology server in this environment, select the Control Panel →Services control applet, or enter the ihsxsrv stop command from the %BINDIR%\TDS\server\bin directory on the topology server.</p>
+        
+        <h4 style="text-align: justify;">&nbsp;&nbsp;&nbsp;<b>Using a Line-mode Command</b></h4>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;To stop the topology server when it is running without problems, complete the following steps:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;1.	Open a workstation command window.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;1.	Open a workstation command window.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;2.	Change to one of the following directories</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v For AIX or Linux systems: $BINDIR/TDS/server/bin</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v For Windows systems: $BINDIR%\TDS\server\bin</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;3.	Enter the tserver stop command to stop the topology server.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;The tserver stop command, with no flags, stops the topology server. For AIX or Linux systems, only root users can stop the topology server.</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;4.	For AIX or Linux systems only, if the topology server is suspended, or if a daemon has trapped, issue the tserver stop command a second time with the -f flag in the following way:</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;tserver stop -f</p>
+        <p style="text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;The tserver stop -f command forces running daemons to stop, and cleans up any remaining inter-process communication resources that were used by the daemons.</p>
+        
+    </div>
+</body>
+</html>

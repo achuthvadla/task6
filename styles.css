@@ -1,0 +1,8 @@
+body{
+    font-family: Arial, sans-serif;
+    margin:4em;
+    padding:8px;
+}
+.page {
+            page-break-before: always;
+}
